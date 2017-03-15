@@ -11,15 +11,20 @@ RUN echo 'root:root' |chpasswd
 
 RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y n2n && apt-get clean && rm -rf /var/lib/apt/lists/*
-
+## copy n2n
+ADD supernode /usr/bin/supernode
+ADD edge /usr/bin/edge
+RUN chmod 777 /usr/bin/supernode && chmod 777 /usr/bin/edge
 ADD n2nssd.conf /etc/supervisor/conf.d/n2nssd.conf
 
-ENV SUPERNODE_PORT 8989
 
+## pipesocker install
+
+ENV SUPERNODE_PORT 8989
+EXPOSE 9001
 EXPOSE 8989
 EXPOSE 22
+EXPOSE 8000
 
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/n2nssd.conf"]
 
