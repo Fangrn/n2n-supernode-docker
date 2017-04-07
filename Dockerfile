@@ -1,6 +1,12 @@
 FROM       ubuntu:14.04
 MAINTAINER Aleksandar Diklic "https://github.com/rastasheep"
-
+ENV version=2.3 \
+    type=pump \
+    remotehost="" \
+    remoteport=7473 \
+    localport=7473 \
+    password=""
+ENV SUPERNODE_PORT 16565
 # install supervisor, curl
 RUN apt-get update -y
 RUN apt-get install -y supervisor openssh-server curl xz-utils
@@ -24,13 +30,7 @@ ADD n2nssd.conf /etc/supervisor/conf.d/n2nssd.conf
 
 
 ## pipesocker install
-ENV version=2.3 \
-    type=pump \
-    remotehost="" \
-    remoteport=7473 \
-    localport=7473 \
-    password=""
-ENV SUPERNODE_PORT 16565
+
 EXPOSE 9001
 EXPOSE 16565
 EXPOSE 22
