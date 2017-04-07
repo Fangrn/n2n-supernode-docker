@@ -10,8 +10,7 @@ ENV SUPERNODE_PORT 16565
 # install supervisor, curl
 RUN apt-get update -y
 RUN apt-get install -y supervisor openssh-server curl xz-utils
-RUN curl -SL https://github.com/pipesocks/pipesocks/releases/download/2.3/pipesocks-2.3-linux.tar.xz | 
-RUN tar -xJ 
+RUN curl -SL https://github.com/pipesocks/pipesocks/releases/download/$version/pipesocks-$version-linux.tar.xz | tar -xJ 
 RUN apt-get remove -y curl xz-utils
 RUN apt-get autoremove -y
 RUN rm -rf /var/lib/apt/lists/*
