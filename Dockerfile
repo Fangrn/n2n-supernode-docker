@@ -1,11 +1,11 @@
 FROM       ubuntu:14.04
 MAINTAINER Aleksandar Diklic "https://github.com/rastasheep"
-ENV version=2.3 \
-    type=pump \
-    remotehost="" \
-    remoteport=7473 \
-    localport=7473 \
-    password=""
+ENV version=2.3
+ENV type=pump
+ENV remotehost=""
+ENV remoteport=7473
+ENV localport=7473
+ENV password=""
 ENV SUPERNODE_PORT 16565
 # install supervisor, curl
 RUN apt-get update -y
