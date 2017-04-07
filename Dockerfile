@@ -2,13 +2,13 @@ FROM       ubuntu:14.04
 MAINTAINER Aleksandar Diklic "https://github.com/rastasheep"
 
 # install supervisor, curl
-RUN apt-get update -y && \
-    apt-get install -y supervisor openssh-server curl xz-utils && \
-    curl -SL https://github.com/pipesocks/pipesocks/releases/download/$version/pipesocks-$version-linux.tar.xz | \
-    tar -xJ && \
-    apt-get remove -y curl xz-utils && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y
+RUN apt-get install -y supervisor openssh-server curl xz-utils
+RUN curl -SL https://github.com/pipesocks/pipesocks/releases/download/$version/pipesocks-$version-linux.tar.xz | 
+RUN tar -xJ 
+RUN apt-get remove -y curl xz-utils
+RUN apt-get autoremove -y
+RUN rm -rf /var/lib/apt/lists/*
 RUN mkdir /var/run/sshd
 
 RUN echo 'root:root' |chpasswd
