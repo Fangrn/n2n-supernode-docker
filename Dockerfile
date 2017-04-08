@@ -28,7 +28,8 @@ RUN chmod 777 /usr/bin/supernode && chmod 777 /usr/bin/edge
 ADD n2nssd.conf /etc/supervisor/conf.d/n2nssd.conf
 
 
-## pipesocker install
+## pipesocker copy
+RUN cp /pipesocks /usr/bin/pipesocks
 
 EXPOSE 9001
 EXPOSE 16565
